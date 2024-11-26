@@ -78,11 +78,10 @@
         <input type="number" bind:value={num1} placeholder="Введите первое число"/>
         <input type="number" bind:value={num2} placeholder="Введите второе число"/>
         <div>
-            <button on:click={()=>calculate('+')}>+</button>
-            <button on:click={()=>calculate('-')}>-</button>
-            <button on:click={()=>calculate('*')}>*</button>
-            <button on:click={()=>calculate('/')}>/</button>
-    
+            <button on:click={() => calculate('+')}>+</button>
+            <button on:click={() => calculate('-')}>-</button>
+            <button on:click={() => calculate('*')}>*</button>
+            <button on:click={() => calculate('/')}>/</button>
             <p class="result">Результат: {totalSum}</p>
         </div>
     </div>
