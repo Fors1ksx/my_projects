@@ -4,10 +4,10 @@
 
 <header class="header">
 	<nav class="nav">
-		<a href="#home" class="nav-item">
+		<a href="/home" class="nav-item">
 			<img src="images/icon1.png" alt="Home" class="nav-icon" />
 		</a>
-		<a href="#services" class="nav-item">
+		<a href="/services" class="nav-item">
 			<img src="images/icon2.png" alt="Services" class="nav-icon" />
 		</a>
 		<a href="#contact" class="nav-item">
@@ -21,42 +21,53 @@
     <img src="images/filter.png" alt="Filters" class="filter">
   </div>
 	<section class="ac-container">
+		<input type="text" style="color: black; display:block;" bind:value={key.prom}/>	
+		{#each sorted as event, counter}
 		<div>
-			<input id="ac-1" name="accordion-1" type="checkbox" checked />
-			<label for="ac-1">Hackathon MeetUP</label>
+			<input id={`ac-${counter}`} name={`accordion-${counter}`} type="checkbox" checked={event.isOpen} on:click={() => event.isOpen=!event.isOpen}/>
+			<label for={`ac-${counter}`}>{event.name}</label>
 			<article>
-				<p>Короткое описание мероприятия, чтобы понимать, куда идёшь и что там будет</p>
+				<p>{event.description}</p>
 			</article>
 		</div>
-		<div>
-			<input id="ac-2" name="accordion-1" type="checkbox" />
-			<label for="ac-2">Hackathon MeetUP</label>
-			<article>
-				<p>Короткое описание мероприятия, чтобы понимать, куда идёшь и что там будет</p>
-			</article>
-		</div>
-		<div>
-			<input id="ac-3" name="accordion-1" type="checkbox" />
-			<label for="ac-3">Hackathon MeetUP</label>
-			<article>
-				<p>Короткое описание мероприятия, чтобы понимать, куда идёшь и что там будет</p>
-			</article>
-		</div>
-		<div>
-			<input id="ac-4" name="accordion-1" type="checkbox" />
-			<label for="ac-4">Hackathon MeetUP</label>
-			<article>
-				<p>Короткое описание мероприятия, чтобы понимать, куда идёшь и что там будет</p>
-			</article>
-		</div>
+		{/each}
 	</section>
 </main>
 <footer class="footer"></footer>
+<script>
+	const a = [{
+		name: 'Hackathon MeetUP1',
+		description: "Короткое описание мероприятия, чтобы понимать, куда идёшь и что там будет",
+		image: "",
+		key: "1",
+		isOpen: false,
+	},{
+		name: 'Hackathon MeetUP2',
+		description: "Короткое описание мероприятия, чтобы понимать, куда идёшь и что там будет",
+		image: "",
+		key: "2",
+		isOpen: false,
+	},{
+		name: 'Hackathon MeetUP3',
+		description: "Короткое описание мероприятия, чтобы понимать, куда идёшь и что там будет",
+		image: "",
+		key: "1",
+		isOpen: false,
+	},{
+		name: 'Hackathon MeetUP4',
+		description: "Короткое описание мероприятия, чтобы понимать, куда идёшь и что там будет",
+		image: "",
+		key: "2",
+		isOpen: false,
+	}]
+	$: key = {prom: "1"};
+	$: sorted = a.filter((obj) => {return obj.key == key.prom});
+</script>
 
 <style>
-  * {
-    font-family: "Roboto Flex", sans-serif;
-  }
+	* {
+		font-family: "Roboto Flex", sans-serif;
+	}
 	.header {
 		background-color: #1e1d1c;
 		padding: 10px 15px;
@@ -76,18 +87,18 @@
 		height: 43px;
 	}
 
-  .MetsITAM {
-  display: flex;
-  align-items: center; 
-  justify-content: space-between;
-  margin-top: 16px;
-  margin-left: 23px; /* А здесь можно же как-то объединить margin в один? */
-  margin-right: 23px;
-  }
+	.MetsITAM {
+	display: flex;
+	align-items: center; 
+	justify-content: space-between;
+	margin-top: 16px;
+	margin-left: 23px; /* А здесь можно же как-то объединить margin в один? */
+	margin-right: 23px;
+	}
 
-  .MetsITAM h1 {
-    margin-right: 10px; 
-  }
+	.MetsITAM h1 {
+		margin-right: 10px; 
+	}
 
 	.meetings {
 		color: #d9d9d9;
@@ -98,10 +109,10 @@
 		color: #ff7575;
 	}
 
-  .filter {
-    width: 24px;
-    height: 24px;
-  }
+	.filter {
+		width: 24px;
+		height: 24px;
+	}
 	/* Далее идут стили для аккордеона */
 	.ac-container {
     width: 400px;
