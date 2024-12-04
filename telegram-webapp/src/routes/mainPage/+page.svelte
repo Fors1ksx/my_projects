@@ -31,6 +31,7 @@
 			</article>
 		</div>
 		{/each}
+		<!-- я хайп -->
 	</section>
 </main>
 <footer class="footer"></footer>
