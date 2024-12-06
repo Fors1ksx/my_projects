@@ -1,7 +1,3 @@
-<svelte:head>
-	<link rel="stylesheet" href="/styles.css" />
-</svelte:head>
-
 <header class="header">
 	<nav class="nav">
 		<a href="/home" class="nav-item">
@@ -21,29 +17,75 @@
     <h1><span class="meetings">Мероприятия от</span><span class="ITAM">ITAM</span></h1>
     <button class="toogleDisplay" on:click={toggleVisibility}><img src="images/filter.png" alt="Filters" class="filter-icon"></button>
   </div>
-	<section class="ac-container">
-		{#each sorted as event, counter}
-		<div>
-			<input id={`ac-${counter}`} name={`accordion-${counter}`} type="checkbox" checked={event.isOpen} on:click={() => event.isOpen=!event.isOpen}/>
-			<label for={`ac-${counter}`}>{event.name}</label>
-			<article>
-				<p>{event.description}</p>
-			</article>
-		</div>
-		{/each}
-	</section>
+  <section class="ac-container">
+    {#each sorted as event, counter}
+    <div class="one-container">
+        <input id={`ac-${counter}`} name={`accordion-${counter}`} type="checkbox" checked={event.isOpen} on:change={() => event.isOpen = !event.isOpen} />
+        
+        <!-- Контейнер с тегами, добавляем класс через Svelte -->
+        <div class="conteiner-of-tags" class:background-visible={event.isOpen}>
+            <div class="tags">
+                <div class="tag-container">
+                    <p class="tag">MeetUp</p>
+                </div>
+                <div class="tag-container">
+                    <p class="tag">HackClub</p>
+                </div>
+            </div>
+            <label for={`ac-${counter}`}><img src="images/galochka.png" alt="Galochka" class="galochka"></label>
+        </div>
+        <div class="ac-header">
+            <label for={`ac-${counter}`}>{event.name}</label>
+            <span class="time">16.11.2024 — 20:30</span>
+        </div>
+        <article class="chto-v-meshochke">
+            <p class="description">{event.description}</p>
+            <img src="images/signup.png" alt="SignUp" class="signUp">
+        </article>
+    </div>
+    {/each}
+</section>
 </main>
 
 <footer class="footer">
     {#if isVisible}
     <div transition:fade class="filter">
-        <input type="text" style="color: black; display:block;" bind:value={key.prom}/>	
+        <!-- <input type="text" style="color: black; display:block;" bind:value={key.prom}/>	 -->
+         <h1 class="filters!">Фильтры</h1>
+         <div class="divider"/>
+         <h2 class="poEventam">По мероприятиям</h2>
+         <div class="button-container">
+            <button class="filter-button">MeetUp</button><button class="filter-button">Соревнование</button><button class="filter-button">Q&A</button>
+         </div>
+         <h2>По клубам</h2>
+         <div class="button-container">
+            <button class="filter-button">HackClub</button><button class="filter-button">Design Club</button><button class="filter-button">RoboLab</button>
+            <button class="filter-button">AI KC</button><button class="filter-button">GameDev</button><button class="filter-button">AMC</button><button class="filter-button">CTF</button>
+         </div>        
     </div>
     {/if}
 </footer>
 
 <script>
+    import axios from "axios";
+    import { onMount } from "svelte";
+    import "./styles.css"
     import { page } from '$app/stores';
+
+    let b = [];
+
+    async function getData() {
+    return await axios
+        .get('http://90.156.229.249:8000/get_all_events')
+        .then((res) => {
+        b = res.data;
+        });
+    }
+
+    onMount(() => {
+    getData();
+    });
+
     $: currentPath = $page.url.pathname;
 
 	import { fade } from 'svelte/transition';
@@ -81,166 +123,3 @@
 	$: sorted = a.filter((obj) => {return obj.key == key.prom});
 </script>
 
-<style>
-	* {
-    font-family: "Roboto Flex", sans-serif;
-    }
-    
-    .toogleDisplay {
-        background: transparent;
-        border: none !important;
-        font-size:0;
-    }
-
-    .filter{
-        display: flex;
-        justify-content: center;
-        position: fixed;
-        bottom: 0; /* Закрепить фильтр внизу страницы */
-        left: 0;
-        right: 0;
-    }
-
-    .header {
-        background-color: #1e1d1c;
-        padding: 10px 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .nav-icon {
-        width: 56px;
-        height: 43px;
-        object-fit: contain; /* Сохранить пропорции изображений */
-    }
-
-
-    .MetsITAM {
-    display: flex;
-    align-items: center; 
-    justify-content: space-between;
-    margin: auto 28px auto 28px;
-    }
-
-    .MetsITAM h1 {
-        margin-right: 10px; 
-        font-size: 20px;
-        font-weight: 600;
-    }
-
-    .meetings {
-        color: #d9d9d9;
-        margin-right: 5px;
-    }
-
-    .ITAM {
-        color: #ff7575;
-    }
-
-    .filter-icon {
-        width: 24px;
-        height: 24px;
-    }
-    /* Далее идут стили для аккордеона */
-    .ac-container {
-    width: 400px;
-    margin: 10px auto 30px auto;
-    }
-
-    .ac-container label {
-        padding: 5px 20px;
-        position: relative;
-        z-index: 20;
-        display: flex; /* Используем flexbox для выравнивания текста и чекбокса */
-        align-items: center; /* Выравниваем чекбокс и текст по вертикали */
-        height: 30px;
-        cursor: pointer;
-        color:  #d9d9d9;
-        line-height: 33px;
-        background: #1e1d1c; /* Легкий фон для лейбла */
-        border-radius: 4px; /* Скругленные углы */
-        transition: background 0.3s ease, box-shadow 0.3s ease; /* Плавный переход */
-        font-size: 20px;
-        font-weight: 600;
-    }
-
-    /* Чекбокс */
-    .ac-container input[type="checkbox"] {
-        width: 18px;
-        height: 18px;
-        margin-right: 10px;
-        border: 10px solid rgba(155, 155, 155, 0.6); /* Тонкая серая рамка */
-        background-color: transparent; /* Прозрачный фон */
-        transition: border-color 0.3s ease; /* Плавный переход для рамки */
-    }
-
-    /* При наведении на чекбокс */
-    .ac-container label:hover {
-        background: #1e1d1c; /* Немного затемняем при наведении */
-    }
-
-    .ac-container input:checked + label,
-    .ac-container input:checked + label:hover {
-        background: #1e1d1c; /* Полупрозрачный голубоватый фон при активном состоянии */
-    }
-
-    /* Стиль стрелки */
-    .ac-container label:hover:after,
-    .ac-container input:checked + label:hover:after {
-        content: '';
-        position: absolute;
-        width: 24px;
-        height: 24px;
-        right: 13px;
-        top: 7px;
-        background: transparent url(http://netcribe.com/example/arrow_down.png) no-repeat center center;
-    }
-
-    .ac-container input:checked + label:hover:after {
-        background-image: url(http://netcribe.com/example/arrow_up.png);
-    }
-
-    .ac-container input {
-        display: none;
-    }
-
-    .ac-container article {
-        background: #1e1d1c;
-        margin-top: -1px;
-        overflow: hidden;
-        height: 0px;
-        position: relative;
-        z-index: 10;
-        -webkit-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-        -moz-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-        -o-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-        -ms-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-        transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-    }
-
-    .ac-container input:checked ~ article {
-        height: 100px;
-    }
-
-    .ac-container article p {
-        color: #d9d9d9;
-        font-size: 16px;
-        font-weight: 400;
-        padding: 20px;
-    }
-
-    @media (max-width: 768px) {
-        .nav {
-            justify-content: center;
-            width: 100%;
-            gap: 8px;
-        }
-    }
-</style>

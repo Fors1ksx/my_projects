@@ -12,10 +12,25 @@ font-family: "Roboto Flex", sans-serif;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    flex-direction: column;
     position: fixed;
     bottom: 0; /* Закрепить фильтр внизу страницы */
     left: 0;
     right: 0;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 30px;
+}
+
+.divider {
+    width: 100%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.filter h1, .filter h2 {
+    color:#d9d9d9;
+
 }
 
 .header {
@@ -39,10 +54,10 @@ font-family: "Roboto Flex", sans-serif;
 }
 
 .MetsITAM {
-display: flex;
-align-items: center; 
-justify-content: space-between;
-margin: auto 3vw auto 3vw;
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    margin: auto 3vw auto 3vw;
 }
 
 .MetsITAM h1 {
@@ -64,17 +79,97 @@ margin: auto 3vw auto 3vw;
     width: 24px;
     height: 24px;
 }
-.tag-container {
-    border: grey 1px solid;
-    border-radius: 10px;
-    width: min-content;
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
 }
-.tag {
+
+.filter-button {
+    color: rgba(239, 239, 239, 0.5);
+    border: rgba(239, 239, 239, 0.3) 1px solid;
+    border-radius: 100px;
+    background-color: transparent;
     padding: 4px 8px 4px 8px;
 }
+.tag-container {
+    color: rgba(239, 239, 239, 0.5);
+    border: rgba(239, 239, 239, 0.3) 1px solid;
+    border-radius: 100px;
+    background-color: transparent;
+    width: min-content;
+    margin: 5px;
+}
+
+.tag {
+    padding: 4px 8px 4px 8px;
+    margin: 0px;
+    font-size: 12px;
+}
+
+.conteiner-of-tags {
+    display: flex;
+    justify-content: space-between;
+    /* background-image: url('images/hackmeetup.png');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;  */
+}
+.tags{
+    display: flex;
+    flex-direction: row;
+}
+.galochka {
+    width: 32px;
+    height: 32px;
+    margin-top: 10px;
+}
+.chto-v-meshochke {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0%;
+}
+.description {
+    margin: 0%;
+    padding:0%
+}
+
+.ac-header {
+    display: flex;
+    flex-direction: column;
+}
+.time {
+    color: rgba(239, 239, 239, 0.5);
+    font-size: 12px;
+    font-weight: 300;
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+.signUp {
+    margin-bottom: 10px;
+}
+
+
 /* Далее идут стили для аккордеона */
+
+/* Фон появляется только если класс "background-visible" активен */
+.conteiner-of-tags.background-visible {
+    background-image: url('images/hackmeetup.png');
+    background-size: cover; /* Растягиваем изображение на весь контейнер */
+    background-position: center; /* Центрируем изображение */
+    background-repeat: no-repeat; /* Изображение не повторяется */
+}
+
+/* При закрытом аккордеоне фон не появляется */
+.conteiner-of-tags {
+    background-image: none;
+}
+
 .ac-container {
-    width: 95vw;
+    width: 95%;
     margin: 10px 2.5vw 30px 2.5vw;
     display: flex;
     flex-direction: column;
@@ -82,8 +177,8 @@ margin: auto 3vw auto 3vw;
 }
 
 .one-container {
-    border: grey 2px solid;
-    border-radius: 17px;
+    border: rgba(239, 239, 239, 0.3) 1px solid;
+    border-radius: 8px;
     background-color: #1e1d1c;
 }
 
