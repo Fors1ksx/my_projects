@@ -1,0 +1,165 @@
+* {
+font-family: "Roboto Flex", sans-serif;
+}
+
+.toogleDisplay {
+    background: transparent;
+    border: none !important;
+    font-size:0;
+}
+
+.filter{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: fixed;
+    bottom: 0; /* Закрепить фильтр внизу страницы */
+    left: 0;
+    right: 0;
+}
+
+.header {
+    background-color: #1e1d1c;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-icon {
+    width: 56px;
+    height: 43px;
+    object-fit: contain; /* Сохранить пропорции изображений */
+}
+
+.MetsITAM {
+display: flex;
+align-items: center; 
+justify-content: space-between;
+margin: auto 3vw auto 3vw;
+}
+
+.MetsITAM h1 {
+    margin-right: 10px; 
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.meetings {
+    color: #d9d9d9;
+    margin-right: 5px;
+}
+
+.ITAM {
+    color: #ff7575;
+}
+
+.filter-icon {
+    width: 24px;
+    height: 24px;
+}
+.tag-container {
+    border: grey 1px solid;
+    border-radius: 10px;
+    width: min-content;
+}
+.tag {
+    padding: 4px 8px 4px 8px;
+}
+/* Далее идут стили для аккордеона */
+.ac-container {
+    width: 95vw;
+    margin: 10px 2.5vw 30px 2.5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.one-container {
+    border: grey 2px solid;
+    border-radius: 17px;
+    background-color: #1e1d1c;
+}
+
+.ac-container label {
+    padding: 5px 20px;
+    position: relative;
+    z-index: 20;
+    display: flex; /* Используем flexbox для выравнивания текста и чекбокса */
+    align-items: center; /* Выравниваем чекбокс и текст по вертикали */
+    height: 30px;
+    cursor: pointer;
+    color:  #d9d9d9;
+    line-height: 33px;
+    border-radius: 4px; /* Скругленные углы */
+    transition: background 0.3s ease, box-shadow 0.3s ease; /* Плавный переход */
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Чекбокс */
+.ac-container input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    background-color: transparent; /* Прозрачный фон */
+    transition: border-color 0.3s ease; /* Плавный переход для рамки */
+}
+
+/* Стиль стрелки */
+.ac-container label:hover:after,
+.ac-container input:checked + label:hover:after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: 13px;
+    top: 7px;
+    background: transparent url(http://netcribe.com/example/arrow_down.png) no-repeat center center;
+}
+
+.ac-container input:checked + label:hover:after {
+    background-image: url(http://netcribe.com/example/arrow_up.png);
+}
+
+.ac-container input {
+    display: none;
+}
+
+.ac-container article {
+    margin-top: -1px;
+    overflow: hidden;
+    height: 0px;
+    position: relative;
+    z-index: 10;
+    -webkit-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+    -moz-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+    -o-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+    -ms-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+    transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+}
+
+.ac-container input:checked ~ article {
+    height: fit-content;
+}
+
+.ac-container article p {
+    color: #d9d9d9;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .nav {
+        justify-content: center;
+        width: 100%;
+        gap: 8px;
+    }
+}
