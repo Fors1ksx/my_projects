@@ -2,32 +2,6 @@
 	font-family: 'Roboto Flex', sans-serif;
 }
 
-.toogleDisplay {
-	background: transparent;
-	border: none !important;
-	font-size: 0;
-}
-
-.filter {
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-	flex-direction: column;
-	position: fixed;
-	bottom: 0; /* Закрепить фильтр внизу страницы */
-	left: 0;
-	right: 0;
-	padding-left: 10%;
-	padding-right: 10%;
-	padding-bottom: 30px;
-}
-
-.divider {
-	width: 100%;
-	height: 2px;
-	background-color: rgba(255, 255, 255, 0.25);
-}
-
 .filter h1,
 .filter h2 {
 	color: #d9d9d9;
@@ -71,10 +45,6 @@
 	margin-right: 5px;
 }
 
-.ITAM {
-	color: #ff7575;
-}
-
 .filter-icon {
 	width: 24px;
 	height: 24px;
@@ -101,7 +71,6 @@
 	background-color: transparent;
 	width: min-content;
 	margin: 5px;
-	height: min-content;
 }
 
 .tag {
@@ -114,9 +83,9 @@
 	display: flex;
 	justify-content: space-between;
 	/* background-image: url('images/hackmeetup.png');
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat;  */
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat;  */
 }
 .tags {
 	display: flex;
@@ -140,6 +109,11 @@
 
 .ac-header {
 	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.ac-header-inf {
+	display: flex;
 	flex-direction: column;
 }
 .time {
@@ -149,8 +123,11 @@
 	margin-left: 20px;
 	margin-bottom: 30px;
 }
-.signUp {
-	margin-bottom: 10px;
+.krestik {
+	width: 32px;
+	height: 32px;
+	margin-top: 8px;
+	margin-right: 20px;
 }
 
 /* Далее идут стили для аккордеона */
