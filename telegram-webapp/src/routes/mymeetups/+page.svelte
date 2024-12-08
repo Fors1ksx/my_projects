@@ -4,8 +4,10 @@
 	import './styles_for_mymeetups.css';
 	import { page } from '$app/stores';
 	import EventComponent from '../../components/EventComponent.svelte';
+	import FilterComponent from '../../components/FilterComponent.svelte';
 
 	let b = [];
+	const clubs = ["club1", "club2", "club3"]
 
 	async function getData() {
 		return await axios.get('http://90.156.229.249:8000/get_all_events').then((res) => {
@@ -55,6 +57,9 @@
 			isOpen: false
 		}
 	];
+
+	$: filter = { club: null }
+
 	$: key = { prom: '1' };
 	$: sorted = a.filter((obj) => {
 		return obj.key == key.prom;
@@ -101,26 +106,4 @@
 	</section>
 </main>
 
-<footer class="footer">
-	{#if isVisible}
-		<div transition:fade class="filter">
-			<!-- <input type="text" style="color: black; display:block;" bind:value={key.prom}/>	 -->
-			<h1 class="filters!">Фильтры</h1>
-			<div class="divider" />
-			<h2 class="poEventam">По мероприятиям</h2>
-			<div class="button-container">
-				<button class="filter-button">MeetUp</button><button class="filter-button"
-					>Соревнование</button
-				><button class="filter-button">Q&A</button>
-			</div>
-			<h2>По клубам</h2>
-			<div class="button-container">
-				<button class="filter-button">HackClub</button><button class="filter-button"
-					>Design Club</button
-				><button class="filter-button">RoboLab</button>
-				<button class="filter-button">AI KC</button><button class="filter-button">GameDev</button
-				><button class="filter-button">AMC</button><button class="filter-button">CTF</button>
-			</div>
-		</div>
-	{/if}
-</footer>
+<FilterComponent bind:isVisible bind:filter {clubs} />
