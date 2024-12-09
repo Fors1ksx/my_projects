@@ -9,6 +9,7 @@
 
 	let b = [];
 	const clubs = ["HackClub", "Design Club", "RoboLab", "AI KC", "GameDev", "AMC", "CTF"]
+	const meetups = ["MeetUp", "Соревнование", "Q&A"]
 
 	async function getData() {
 		return await axios.get('http://90.156.229.249:8000/get_all_events').then((res) => {
@@ -27,44 +28,27 @@
 	function toggleVisibility() {
 		isVisible = !isVisible;
 	}
-	const a = [
-		{
-			name: 'Hackathon MeetUP1',
-			description: 'Короткое описание мероприятия, чтобы понимать, куда идёшь и что там будет',
-			image: '',
-			key: '1',
-			isOpen: false
-		},
-		{
-			name: 'Hackathon MeetUP2',
-			description: 'Короткое описание мероприятия, чтобы понимать, куда идёшь и что там будет',
-			image: '',
-			key: '2',
-			isOpen: false
-		},
-		{
-			name: 'Hackathon MeetUP3',
-			description: 'Короткое описание мероприятия, чтобы понимать, куда идёшь и что там будет',
-			image: '',
-			key: '1',
-			isOpen: false
-		},
-		{
-			name: 'Hackathon MeetUP4',
-			description: 'Короткое описание мероприятия, чтобы понимать, куда идёшь и что там будет',
-			image: '',
-			key: '2',
-			isOpen: false
-		}
-	];
 
-
-	$: filter = { club: null }
+	$: filter = { club: [], meetup: [] }
 	
-	$: key = { prom: '1' };
-	$: sorted = a.filter((obj) => {
-		return obj.key == key.prom;
-	});
+	$: key = { name: 'Конференция по IT' };
+	// $: sorted = b.filter((obj) => {
+	// 	if (filter.club){
+
+	// 	}
+	// 		return obj.name == key.name;
+	// 	if (filter.meetup){
+
+	// 	}
+	// 		return obj.name == key.name;
+	// });
+	$: sorted = b.filter((obj) => {
+    let matchesClub = filter.club.length === 0 || filter.club.includes(obj.club);
+    let matchesMeetup = filter.meetup.length === 0 || filter.meetup.includes(obj.meetup);
+
+    return matchesClub && matchesMeetup;
+});
+
 </script>
 
 <header class="header">
@@ -107,4 +91,6 @@
 	</section>
 </main>
 
-<FilterComponent bind:isVisible bind:filter {clubs} />
+<!-- <FilterComponent bind:isVisible bind:filter {clubs} {meetups} /> -->
+<FilterComponent bind:isVisible bind:filter {clubs} {meetups} />
+

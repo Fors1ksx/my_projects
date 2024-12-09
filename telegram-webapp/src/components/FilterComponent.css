@@ -19,16 +19,26 @@
 	width: 24px;
 	height: 24px;
 }
-.filter-button {
-	color: rgba(239, 239, 239, 0.5);
-	border: rgba(239, 239, 239, 0.3) 1px solid;
-	border-radius: 100px;
-	background-color: transparent;
-	padding: 4px 8px 4px 8px;
+.filter-button-active {
+    background: linear-gradient(45deg, #FF65F5, #FFA68F, #FF7575);  /* Градиент */
+    color: white;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05); /* Немного увеличиваем кнопку при активации */
+	transition: background-color 0.3s, transform 0.3s; /* Плавный переход */
 }
+
+.filter-button {
+color: rgba(239, 239, 239, 0.5);
+border: rgba(239, 239, 239, 0.3) 1px solid;
+border-radius: 100px;
+background-color: transparent;
+padding: 4px 8px 4px 8px;
+}
+
 .button-container {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	gap: 8px;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+gap: 8px;
 }

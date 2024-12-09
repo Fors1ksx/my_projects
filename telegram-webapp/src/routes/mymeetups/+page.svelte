@@ -27,42 +27,15 @@
 	function toggleVisibility() {
 		isVisible = !isVisible;
 	}
-	const a = [
-		{
-			name: 'Hackathon MeetUP1',
-			description: 'Короткое описание мероприятия, чтобы понимать, куда идёшь и что там будет',
-			image: '',
-			key: '1',
-			isOpen: false
-		},
-		{
-			name: 'Hackathon MeetUP2',
-			description: 'Короткое описание мероприятия, чтобы понимать, куда идёшь и что там будет',
-			image: '',
-			key: '2',
-			isOpen: false
-		},
-		{
-			name: 'Hackathon MeetUP3',
-			description: 'Короткое описание мероприятия, чтобы понимать, куда идёшь и что там будет',
-			image: '',
-			key: '1',
-			isOpen: false
-		},
-		{
-			name: 'Hackathon MeetUP4',
-			description: 'Короткое описание мероприятия, чтобы понимать, куда идёшь и что там будет',
-			image: '',
-			key: '2',
-			isOpen: false
+	
+	$: filter = { club: [] }
+
+	$: key = { name: 'Конференция по IT' };
+	$: sorted = b.filter((obj) => {
+		if (filter.club){
+
 		}
-	];
-
-	$: filter = { club: null }
-
-	$: key = { prom: '1' };
-	$: sorted = a.filter((obj) => {
-		return obj.key == key.prom;
+			return obj.name == key.name;
 	});
 </script>
 

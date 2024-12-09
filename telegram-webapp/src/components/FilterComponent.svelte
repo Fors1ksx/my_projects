@@ -1,6 +1,9 @@
 <script>
-    export let isVisible, filter, clubs;
+    export let isVisible, filter, clubs, meetups;
     import { fade } from "svelte/transition";
+
+	$: filter, console.log(filter.club), console.log(filter.meetup);
+	$: console.log('Current filter for meetups:', filter.meetup);
 </script>
 <footer class="footer">
 	{#if isVisible}
@@ -10,14 +13,26 @@
 			<div class="divider" />
 			<h2 class="poEventam">По мероприятиям</h2>
 			<div class="button-container">
-				<button class="filter-button">MeetUp</button><button class="filter-button"
-					>Соревнование</button
-				><button class="filter-button">Q&A</button>
+				{#each meetups as meetup}
+				<!-- <button class={filter.meetup.includes(meetup) ? "filter-button-active" : "filter-button"} on:click={() =>  {filter.meetup.includes(meetup) ? filter.meetup = filter.meetup.filter((obj) => {return obj!==meetup}) : filter.meetup = [...filter.meetup, meetup]}}>{meetup}</button> -->
+				<button
+					class={filter.meetup.includes(meetup) ? "filter-button-active" : "filter-button"}
+					on:click={() => {
+						// Обновляем массив фильтров для мероприятий
+						filter.meetup = filter.meetup.includes(meetup)
+							? filter.meetup.filter(obj => obj !== meetup) 
+							: [...filter.meetup, meetup];
+					}}
+				>
+					{meetup}
+				</button>
+
+			  {/each}
 			</div>
 			<h2>По клубам</h2>
 			<div class="button-container">
 				{#each clubs as club}
-				<button class={filter.club == club ? "filter-button-active" : "filter-button"} on:click={() =>  {filter.club == club ? filter.club = null : filter.club = club}}>{club}</button>
+				<button class={filter.club.includes(club) ? "filter-button-active" : "filter-button"} on:click={() =>  {filter.club.includes(club) ? filter.club = filter.club.filter((obj) => {return obj!==club}) : filter.club = [...filter.club, club]}}>{club}</button>
 				{/each}
 			</div>
 		</div>
