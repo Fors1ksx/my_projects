@@ -95,7 +95,14 @@
 	width: 32px;
 	height: 32px;
 	margin-top: 10px;
+	transition: transform 0.3s ease; /* Плавный переход при повороте */
+	transform: rotate(0deg); /* Исходное положение */
 }
+
+.galochka.rotated {
+	transform: rotate(180deg); /* Поворот на 180 градусов */
+}
+
 .chto-v-meshochke {
 	display: flex;
 	align-items: center;
@@ -128,6 +135,9 @@
 	height: 32px;
 	margin-top: 8px;
 	margin-right: 20px;
+}
+.signup {
+	margin-bottom: 8px;
 }
 
 /* Далее идут стили для аккордеона */

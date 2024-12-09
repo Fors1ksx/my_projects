@@ -8,7 +8,7 @@
 	import FilterComponent from '../../components/FilterComponent.svelte';
 
 	let b = [];
-	const clubs = ["club1", "club2", "club3"]
+	const clubs = ["HackClub", "Design Club", "RoboLab", "AI KC", "GameDev", "AMC", "CTF"]
 
 	async function getData() {
 		return await axios.get('http://90.156.229.249:8000/get_all_events').then((res) => {

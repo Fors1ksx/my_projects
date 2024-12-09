@@ -1,6 +1,13 @@
 <script>
 	export let event, counter;
 	import './EventComponent.css';
+	let isRotated = false;
+
+	// Переключение состояния вращения
+	function toggleRotation() {
+		isRotated = !isRotated;
+	}
+
 </script>
 
 <div class="one-container">
@@ -23,7 +30,10 @@
 			</div>
 		</div>
 		<label for={`ac-${counter}`}
-			><img src="images/galochka.png" alt="Galochka" class="galochka" /></label
+			><img src="images/galochka.png"
+			alt="Galochka"
+			class="galochka {isRotated ? 'rotated' : ''}" 
+			on:click={toggleRotation} /></label
 		>
 	</div>
 	<div class="ac-header">
@@ -35,5 +45,6 @@
 	</div>
 	<article class="chto-v-meshochke">
 		<p class="description">{event.description}</p>
+		<img src="images/signup.png" alt="SignUp" class="signup">
 	</article>
 </div>
