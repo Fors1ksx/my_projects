@@ -3,9 +3,9 @@
 	import { onMount } from 'svelte';
 	import './styles_for_home.css';
 	import { page } from '$app/stores';
-	import EventComponent from '../../components/EventComponent.svelte';
+	// import EventComponent from '../../components/EventComponent.svelte';
 	import { fade } from 'svelte/transition';
-	import FilterComponent from '../../components/FilterComponent.svelte';
+	// import FilterComponent from '../../components/FilterComponent.svelte';
 
 	let b = [];
 	const clubs = ["HackClub", "Design Club", "RoboLab", "AI KC", "GameDev", "AMC", "CTF"]
@@ -42,12 +42,12 @@
 	// 	}
 	// 		return obj.name == key.name;
 	// });
-	$: sorted = b.filter((obj) => {
-    let matchesClub = filter.club.length === 0 || filter.club.includes(obj.club);
-    let matchesMeetup = filter.meetup.length === 0 || filter.meetup.includes(obj.meetup);
+	// $: sorted = b.filter((obj) => {
+    // let matchesClub = filter.club.length === 0 || filter.club.includes(obj.club);
+    // let matchesMeetup = filter.meetup.length === 0 || filter.meetup.includes(obj.meetup);
 
-    return matchesClub && matchesMeetup;
-});
+    // return matchesClub && matchesMeetup;
+// });
 
 </script>
 
@@ -76,19 +76,3 @@
 		</a>
 	</nav>
 </header>
-
-<main class="main-content">
-	<div class="MetsITAM">
-		<h1><span class="meetings">Мои события</span></h1>
-		<button class="toogleDisplay" on:click={toggleVisibility}
-			><img src="images/filter.png" alt="Filters" class="filter-icon" /></button
-		>
-	</div>
-	<section class="ac-container">
-		{#each sorted as event, counter}
-			<EventComponent bind:event {counter} />
-		{/each}
-	</section>
-</main>
-
-<FilterComponent bind:isVisible bind:filter {clubs} {meetups} />

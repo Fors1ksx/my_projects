@@ -1,6 +1,7 @@
 <script>
     export let isVisible, filter, clubs, meetups;
     import { fade } from "svelte/transition";
+	import './FilterComponent.css'
 
 	$: filter, console.log(filter.club), console.log(filter.meetup);
 	$: console.log('Current filter for meetups:', filter.meetup);
@@ -24,7 +25,7 @@
 							: [...filter.meetup, meetup];
 					}}
 				>
-					{meetup}
+					<p>{meetup}</p>
 				</button>
 
 			  {/each}
@@ -32,7 +33,7 @@
 			<h2>По клубам</h2>
 			<div class="button-container">
 				{#each clubs as club}
-				<button class={filter.club.includes(club) ? "filter-button-active" : "filter-button"} on:click={() =>  {filter.club.includes(club) ? filter.club = filter.club.filter((obj) => {return obj!==club}) : filter.club = [...filter.club, club]}}>{club}</button>
+				<button class={filter.club.includes(club) ? "filter-button-active" : "filter-button"} on:click={() =>  {filter.club.includes(club) ? filter.club = filter.club.filter((obj) => {return obj!==club}) : filter.club = [...filter.club, club]}}><p>{club}</p></button>
 				{/each}
 			</div>
 		</div>

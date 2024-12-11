@@ -113,6 +113,7 @@
 .conteiner-of-tags {
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 20px;
 	/* background-image: url('images/hackmeetup.png');
     background-size: cover; 
     background-position: center; 
@@ -125,7 +126,6 @@
 .galochka {
 	width: 32px;
 	height: 32px;
-	margin-top: 10px;
 }
 .chto-v-meshochke {
 	display: flex;
@@ -147,7 +147,7 @@
 	font-size: 12px;
 	font-weight: 300;
 	margin-left: 20px;
-	margin-bottom: 30px;
+	margin-bottom: 10px;
 }
 .signUp {
 	margin-bottom: 10px;
@@ -157,7 +157,6 @@
 
 /* Фон появляется только если класс "background-visible" активен */
 .conteiner-of-tags.background-visible {
-	background-image: url('images/hackmeetup.png');
 	background-size: cover; /* Растягиваем изображение на весь контейнер */
 	background-position: center; /* Центрируем изображение */
 	background-repeat: no-repeat; /* Изображение не повторяется */
@@ -183,7 +182,7 @@
 }
 
 .ac-container label {
-	padding: 5px 20px;
+	padding: 0px 0px;
 	position: relative;
 	z-index: 20;
 	display: flex; /* Используем flexbox для выравнивания текста и чекбокса */

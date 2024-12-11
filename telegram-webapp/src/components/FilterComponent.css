@@ -19,13 +19,35 @@
 	width: 24px;
 	height: 24px;
 }
+
+.filter-button, .filter-button-active {
+	height: min-content;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
 .filter-button-active {
-    background: linear-gradient(45deg, #FF65F5, #FFA68F, #FF7575);  /* Градиент */
-    color: white;
-    border: none;
+    /* color: white; */
+    border: 1px solid transparent;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transform: scale(1.05); /* Немного увеличиваем кнопку при активации */
 	transition: background-color 0.3s, transform 0.3s; /* Плавный переход */
+	background: linear-gradient(#1e1d1c, #1e1d1c) padding-box,
+	linear-gradient(45deg, #FF65F5, #FFA68F, #FF7575) border-box;
+	border-radius: 100px;
+	
+}
+
+.filter-button p, .filter-button-active p {
+	
+	margin: 0px;
+	height: min-content;
+
+}
+
+.filter-button-active p {
+	background: linear-gradient(45deg, #FF65F5, #FFA68F, #FF7575);
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
 }
 
 .filter-button {
