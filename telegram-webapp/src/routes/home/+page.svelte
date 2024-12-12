@@ -13,8 +13,8 @@
 
 	async function getData() {
 		return await axios.get('http://90.156.229.249:8000/get_all_events').then((res) => {
-			console.log(res.data);
-			b = res.data;
+			b = res.data.map((event1) => {event1.tags = event1.tags.split(","); return event1});
+			console.log(b);
 		});
 	}
 
@@ -43,8 +43,8 @@
 	// 		return obj.name == key.name;
 	// });
 	$: sorted = b.filter((obj) => {
-    let matchesClub = filter.club.length === 0 || filter.club.includes(obj.club);
-    let matchesMeetup = filter.meetup.length === 0 || filter.meetup.includes(obj.meetup);
+    let matchesClub = filter.club.length === 0 || filter.club.some((club) => {return obj.tags.some((tag) => {return tag.includes(club)})});
+    let matchesMeetup = filter.meetup.length === 0 || filter.meetup.some((meetup) => {return obj.tags.some((tag) => {return tag.includes(meetup)})});
 
     return matchesClub && matchesMeetup;
 });

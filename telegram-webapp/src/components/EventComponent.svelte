@@ -24,20 +24,19 @@
 
 	<!-- Контейнер с тегами, добавляем класс через Svelte -->
 	<div class="ac-header">
-		<div class={`ac-header-inf${event.isOpen ? '-active' : ''}`}>
-			<label for={`ac-${counter}`}>{event.name}</label>
-			<span class="time">16.11.2024 — 20:30</span>
+		<div style={`margin-top:${event.name.length > 23 ? "20px" : "0px"}`} class={`ac-header-inf${event.isOpen ? '-active' : ''}`}>
+			<label  for={`ac-${counter}`}>{event.name}</label>
+			<span style={`margin-top:${event.name.length > 23 ? "20px" : "0px"}`} class="time">16.11.2024 — 20:30</span>
 		</div>
 		<img src="images/krestik.png" alt="Krestik" class="krestik" />
 	</div>
 	<div class="conteiner-of-tags" class:background-visible={event.isOpen}>
 		<div class="tags">
+			{#each event.tags as tag}
 			<div class="tag-container">
-				<p class="tag">MeetUp</p>
+					<p class="tag">{tag}</p>
 			</div>
-			<div class="tag-container">
-				<p class="tag">HackClub</p>
-			</div>
+			{/each}
 		</div>
 		<label class={`galochka-container${event.isOpen ? '-active' : ''}`} for={`ac-${counter}`}
 			><img src="images/galochka.png"
