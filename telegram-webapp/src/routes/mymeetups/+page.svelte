@@ -6,6 +6,13 @@
 	import EventComponent from '../../components/EventComponent.svelte';
 	import { fade } from 'svelte/transition';
 	import FilterComponent from '../../components/FilterComponent.svelte';
+	import { myMeetups } from '../../components/myMeetups';
+	let meetupsList = [];
+
+    // Подписываемся на изменения в хранилище
+    myMeetups.subscribe((data) => {
+        meetupsList = data;
+    });
 
 	let b = [];
 	const clubs = ["HackClub", "Design Club", "RoboLab", "AI KC", "GameDev", "AMC", "CTF"]
@@ -42,7 +49,7 @@
 	// 	}
 	// 		return obj.name == key.name;
 	// });
-	$: sorted = b.filter((obj) => {
+	$: sorted = meetupsList.filter((obj) => {
     let matchesClub = filter.club.length === 0 || filter.club.some((club) => {return obj.tags.some((tag) => {return tag.includes(club)})});
     let matchesMeetup = filter.meetup.length === 0 || filter.meetup.some((meetup) => {return obj.tags.some((tag) => {return tag.includes(meetup)})});
 
@@ -86,7 +93,7 @@
 	</div>
 	<section class="ac-container">
 		{#each sorted as event, counter}
-			<EventComponent bind:event {counter} />
+			<EventComponent {event} {counter} />
 		{/each}
 	</section>
 </main>

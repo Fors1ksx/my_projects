@@ -58,13 +58,29 @@ function handleClickOutside(event: MouseEvent): void {
 }
 
   
-    import { onMount } from "svelte";
-    onMount(() => {
-      document.addEventListener("click", handleClickOutside);
-      return () => {
-        document.removeEventListener("click", handleClickOutside);
-      };
-    });
+    // import { onMount } from "svelte";
+    // onMount(() => {
+    //   document.addEventListener("click", handleClickOutside);
+    //   return () => {
+    //     document.removeEventListener("click", handleClickOutside);
+    //   };
+    // });
+    // import { onMount } from 'svelte';
+
+    // let telegramUser = null;
+
+    // onMount(() => {
+    //     if (window.Telegram?.WebApp) {
+    //         const webApp = window.Telegram.WebApp;
+
+    //         // Получаем данные пользователя Telegram
+    //         telegramUser = webApp.initDataUnsafe.user;
+    //         console.log('Telegram User:', telegramUser);
+    //     }
+    // });
+
+
+
 </script>
   
   

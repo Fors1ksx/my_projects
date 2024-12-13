@@ -3,6 +3,27 @@
 	import './EventComponent.css';
 	let isRotated = false;
 
+	import { myMeetups } from './myMeetups'; // Путь к хранилищу
+
+
+	// Функция для добавления события в "Мои события"
+	function addToMyMeetups() {
+		myMeetups.update((current) => {
+			// Проверяем, чтобы событие не добавлялось повторно
+			if (!current.some((e) => e.id === event.id)) {
+				return [...current, event];
+			}
+			return current;
+		});
+	}
+
+	function removeFromMyMeetups() {
+        myMeetups.update((current) => {
+            return current.filter((e) => e.id !== event.id); // Удаляем событие по id
+        });
+    }
+
+
 	// Переключение состояния вращения
 	function toggleRotation(event) {
 		event.stopPropagation()
@@ -28,7 +49,9 @@
 			<label  for={`ac-${counter}`}>{event.name}</label>
 			<span style={`margin-top:${event.name.length > 23 ? "20px" : "0px"}`} class="time">16.11.2024 — 20:30</span>
 		</div>
-		<img src="images/krestik.png" alt="Krestik" class="krestik" />
+		<button class="krestik-btn" on:click={removeFromMyMeetups}>
+            <img src="images/krestik.png" alt="Удалить" class="krestik" />
+        </button>
 	</div>
 	<div class="conteiner-of-tags" class:background-visible={event.isOpen}>
 		<div class="tags">
@@ -48,6 +71,8 @@
 	
 	<article class="chto-v-meshochke">
 		<p class="description">{event.description}</p>
-		<img src="images/signup.png" alt="SignUp" class="signup">
+		<button class="signup" on:click={addToMyMeetups}>
+			<img src="images/signup.png" alt="SignUp" />
+		</button>
 	</article>
 </div>

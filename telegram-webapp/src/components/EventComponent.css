@@ -138,9 +138,29 @@
 	height: 32px;
 	margin-top: 8px;
 	margin-right: 20px;
+	display: block;
 }
+.krestik-btn {
+    background: none; /* Убираем фон кнопки */
+    border: none; /* Убираем границу кнопки */
+    padding: 0; /* Убираем отступы */
+    cursor: pointer; /* Меняем курсор на указатель */
+}
+
 .signup {
 	margin-bottom: 8px;
+}
+button.signup {
+    background: none; /* Убирает фон */
+    border: none; /* Убирает границы */
+    padding: 0; /* Убирает внутренние отступы */
+    margin: 0; /* Убирает внешние отступы */
+    display: inline-block; /* Гарантирует, что кнопка адаптируется к размеру содержимого */
+    cursor: pointer; /* Показывает указатель, как у кнопки */
+}
+
+button.signup img {
+    display: block; /* Убирает дополнительные отступы изображения */
 }
 
 /* Далее идут стили для аккордеона */
